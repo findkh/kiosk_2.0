@@ -1,10 +1,17 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Home from "./page/Home";
+import Menu from "./page/Menu";
+import { MenuProvider } from "./context/MenuContext";
 
 function App() {
   return (
-    <>
-      <div>app</div>
-    </>
+    <MenuProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+      </Routes>
+    </MenuProvider>
   );
 }
 
