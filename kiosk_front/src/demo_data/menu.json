@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "type": "coffee",
+    "name": "아메리카노",
+    "price": "4000",
+    "option": ["hot", "ice"],
+    "image": "/menu/1americano.jpg",
+    "qt": 1
+  },
+  {
+    "id": 1,
+    "type": "coffee",
+    "name": "카페모카",
+    "price": "5000",
+    "option": ["hot", "ice"],
+    "image": "/menu/2cafeMocha.jpg",
+    "qt": 1
+  },
+  {
+    "id": 3,
+    "type": "coffee",
+    "name": "카페라떼",
+    "price": "4500",
+    "option": ["hot", "ice"],
+    "image": "/menu/3cafeLatte.jpg",
+    "qt": 1
+  },
+  {
+    "id": 4,
+    "type": "smoothie",
+    "name": "블루베리 스무디",
+    "price": "6000",
+    "option": ["ice"],
+    "qt": 1,
+    "image": "/menu/4BlueberrySmoothie.jpg"
+  },
+  {
+    "id": 5,
+    "type": "dessert",
+    "name": "초코케이크",
+    "price": "4500",
+    "option": [],
+    "qt": 1,
+    "image": "/menu/5chocoCake.jpg"
+  }
+]
