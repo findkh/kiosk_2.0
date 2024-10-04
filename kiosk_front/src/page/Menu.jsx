@@ -1,4 +1,3 @@
-// Menu.jsx
 import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
@@ -8,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Footer from "../components/Footer";
-import ScrollTop from "../components/\bScrollTop"; // 스크롤탑 컴포넌트 import
+import ScrollTop from "../components/ScrollTop"; // 스크롤탑 컴포넌트 import
 import { useContext } from "react";
 import { MenuContext } from "../context/MenuContext";
 import menu from "../demo_data/menu.json"; // 메뉴 데이터 import
@@ -17,7 +16,7 @@ import Fab from "@mui/material/Fab";
 import { FaAngleUp } from "react-icons/fa";
 
 const Menu = (props) => {
-  const { selectedOption } = useContext(MenuContext); // 선택한 옵션 가져오기
+  const { menuType, addToCart } = useContext(MenuContext); // menuType 및 addToCart 함수 가져오기
 
   return (
     <>
@@ -35,7 +34,7 @@ const Menu = (props) => {
           <Box sx={{ my: 2 }}>
             <h2>메뉴 페이지</h2>
             <Typography variant="body1">
-              선택한 옵션: {selectedOption}
+              선택한 메뉴 타입: {menuType}
             </Typography>
 
             {/* 메뉴 항목 렌더링 */}
@@ -63,6 +62,7 @@ const Menu = (props) => {
                     image={menuItem.image}
                     option={menuItem.option}
                     qt={menuItem.qt}
+                    addToCart={addToCart} // addToCart를 props로 전달
                   />
                 </Box>
               ))}
