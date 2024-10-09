@@ -16,7 +16,8 @@ export const MenuProvider = ({ children }) => {
     setCartItems((prevItems) => {
       const existingItemIndex = prevItems.findIndex(
         (cartItem) =>
-          cartItem.name === item.name && cartItem.option === item.option
+          cartItem.name === item.name &&
+          cartItem.selectedOption === item.selectedOption // 옵션 추가
       );
       if (existingItemIndex !== -1) {
         // 기존에 동일한 메뉴가 있을 경우, 개수를 더함

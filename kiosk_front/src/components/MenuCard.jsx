@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import ModalComponent from "./ModalComponent"; // 모달 컴포넌트 가져오기
+import AddMenuModal from "./AddMenuModal"; // 모달 컴포넌트 가져오기
 
 const MenuCard = ({ name, description, price, image, option, addToCart }) => {
   const [open, setOpen] = useState(false);
@@ -23,6 +23,7 @@ const MenuCard = ({ name, description, price, image, option, addToCart }) => {
       price: price * quantity,
       quantity,
       selectedOption,
+      originalPrice: price,
     };
     addToCart(item);
     handleClose();
@@ -46,7 +47,7 @@ const MenuCard = ({ name, description, price, image, option, addToCart }) => {
       </Card>
 
       {/* 모달 */}
-      <ModalComponent
+      <AddMenuModal
         open={open}
         handleClose={handleClose}
         name={name}
