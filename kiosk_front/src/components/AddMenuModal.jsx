@@ -25,7 +25,7 @@ const modalStyle = {
   outline: "none", // 외곽선 제거
 };
 
-const ModalComponent = ({
+const AddMenuModal = ({
   open,
   handleClose,
   name,
@@ -132,4 +132,4 @@ const ModalComponent = ({
   );
 };
 
-export default ModalComponent;
+export default AddMenuModal;

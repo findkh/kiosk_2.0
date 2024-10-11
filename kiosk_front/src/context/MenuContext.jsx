@@ -32,9 +32,38 @@ export const MenuProvider = ({ children }) => {
     });
   };
 
+  // 카트 아이템 수량 업데이트 함수 (개수 감소 또는 증가)
+  const updateCartItemQuantity = (itemName, selectedOption, quantityChange) => {
+    setCartItems((prevItems) => {
+      const updatedItems = prevItems.map((item) => {
+        if (item.name === itemName && item.selectedOption === selectedOption) {
+          const updatedQuantity = item.quantity + quantityChange;
+          if (updatedQuantity <= 0) {
+            return null; // 수량이 0 이하가 되면 null로 변경 (삭제)
+          } else {
+            return {
+              ...item,
+              quantity: updatedQuantity,
+              price: item.price * (updatedQuantity / item.quantity), // 수량에 따라 가격 조정
+            };
+          }
+        }
+        return item;
+      });
+      // null이 아닌 아이템들만 반환 (수량 0인 아이템 삭제됨)
+      return updatedItems.filter((item) => item !== null);
+    });
+  };
+
   return (
     <MenuContext.Provider
-      value={{ menuType, selectMenuType, cartItems, addToCart }}
+      value={{
+        menuType,
+        selectMenuType,
+        cartItems,
+        addToCart,
+        updateCartItemQuantity, // 수량 업데이트 함수 추가
+      }}
     >
       {children}
     </MenuContext.Provider>

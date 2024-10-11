@@ -16,7 +16,7 @@ import Fab from "@mui/material/Fab";
 import { FaAngleUp } from "react-icons/fa";
 
 const Menu = (props) => {
-  const { menuType, addToCart } = useContext(MenuContext); // menuType 및 addToCart 함수 가져오기
+  const { addToCart } = useContext(MenuContext);
 
   return (
     <>
@@ -33,11 +33,7 @@ const Menu = (props) => {
         <Container>
           <Box sx={{ my: 2 }}>
             <h2>메뉴 페이지</h2>
-            <Typography variant="body1">
-              선택한 메뉴 타입: {menuType}
-            </Typography>
 
-            {/* 메뉴 항목 렌더링 */}
             <Box
               sx={{
                 display: "flex",
