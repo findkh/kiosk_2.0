@@ -64,6 +64,7 @@ public class CustomSecurityConfig {
 				.requestMatchers("/swagger-resources/**").permitAll()
 				.requestMatchers("/v3/api-docs/**").permitAll()
 				.requestMatchers("/api/v1/token/**").permitAll() // Token 관련 경로 접근 허용
+				.requestMatchers("/api/v1/menuCategory/**").hasRole("ADMIN")
 				.anyRequest().authenticated(); // 그 외의 모든 요청은 인증 필요
 		});
 		

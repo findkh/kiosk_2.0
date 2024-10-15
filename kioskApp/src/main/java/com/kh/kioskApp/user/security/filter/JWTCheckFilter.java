@@ -24,11 +24,14 @@ import lombok.extern.log4j.Log4j2;
 
 // JWT 토큰을 검증하는 필터 클래스
 @Component
-@RequiredArgsConstructor
 @Log4j2
 public class JWTCheckFilter extends OncePerRequestFilter {
 	
-	private JWTUtil jwtUtil; // JWT 유틸리티 클래스 인스턴스
+	private JWTUtil jwtUtil; 
+	
+	public JWTCheckFilter(JWTUtil jwtUtil) {
+		this.jwtUtil = jwtUtil;
+	}
 	
 	// 특정 요청 경로에 대해 필터를 적용하지 않도록 설정
 	@Override
@@ -69,9 +72,13 @@ public class JWTCheckFilter extends OncePerRequestFilter {
 		
 		// Bearer 토큰에서 실제 JWT 부분만 추출
 		String accessToken = headerStr.substring(7);
+		System.out.println(accessToken);
 		try {
+			System.out.println("여기");
 			// JWT 토큰 검증
 			Map<String, Object> tokenMap = jwtUtil.validateToken(accessToken);
+			
+			System.out.println("?????" + tokenMap);
 			
 			// 정상 처리인 경우
 			log.info("tokenMap: " + tokenMap);

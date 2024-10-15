@@ -1,4 +1,4 @@
-package com.kh.kioskApp.auth.advice;
+package com.kh.kioskApp.token.advice;
 
 import java.nio.file.AccessDeniedException;
 import java.util.HashMap;

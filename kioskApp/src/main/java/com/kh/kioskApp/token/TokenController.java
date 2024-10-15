@@ -1,4 +1,4 @@
-package com.kh.kioskApp.auth;
+package com.kh.kioskApp.token;
 
 import java.util.Map;
 
