@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kh.kioskApp.MenuCategory.dto.MenuCategoryDTO;
 import com.kh.kioskApp.MenuCategory.dto.UpdateMenuCategoryDTO;
 import com.kh.kioskApp.MenuCategory.entity.MenuCategoryEntity;
-import com.kh.kioskApp.MenuCategory.exception.MenuCategoryTaskException;
 import com.kh.kioskApp.MenuCategory.service.MenuCategoryService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,48 +34,28 @@ public class MenuCategoryController {
 	@GetMapping("/list")
 	public ResponseEntity<Map<String, Object>> getAllCategories() {
 		Map<String, Object> response = new HashMap<>();
-		try {
-			List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
-			response.put("categories", categories);
-			return ResponseEntity.ok(response);
-		} catch (MenuCategoryTaskException e) {
-			return handleException(e.getMsg(), e.getCode());
-		}
+		List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
+		response.put("categories", categories);
+		return ResponseEntity.ok(response);
 	}
 	
 	@Operation(summary = "메뉴 카테고리 생성", description = "메뉴 카테고리를 생성합니다.")
 	@PostMapping("/create")
 	public ResponseEntity<Map<String, Object>> create(@RequestBody MenuCategoryDTO menuCategoryDTO) {
+		menuCategoryService.createCategory(menuCategoryDTO.getCategoryName());
+		List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
 		Map<String, Object> response = new HashMap<>();
-		try {
-			menuCategoryService.createCategory(menuCategoryDTO.getCategoryName());
-			List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
-			response.put("categories", categories);
-			return ResponseEntity.status(HttpStatus.CREATED).body(response);
-		} catch (MenuCategoryTaskException e) {
-			return handleException(e.getMsg(), e.getCode());
-		}
+		response.put("categories", categories);
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
 	@Operation(summary = "메뉴 카테고리 수정", description = "메뉴 카테고리를 수정합니다.")
 	@PutMapping("/update")
 	public ResponseEntity<Map<String, Object>> update(@RequestBody UpdateMenuCategoryDTO menuCategoryDTO) {
+		menuCategoryService.updateCategoryName(menuCategoryDTO.getCurrentCategoryName(), menuCategoryDTO.getCategoryName());
+		List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
 		Map<String, Object> response = new HashMap<>();
-		try {
-			// 카테고리 수정
-			menuCategoryService.updateCategoryName(menuCategoryDTO.getCurrentCategoryName(), menuCategoryDTO.getCategoryName());
-			
-			// 모든 카테고리 리스트 조회
-			List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
-			response.put("categories", categories);
-			
-			return ResponseEntity.ok(response);
-		} catch (MenuCategoryTaskException e) {
-			return handleException(e.getMsg(), e.getCode());
-		}
-	}
-	
-	private ResponseEntity<Map<String, Object>> handleException(String msg, int status){
-		return ResponseEntity.status(status).body(Map.of("error", msg));
+		response.put("categories", categories);
+		return ResponseEntity.ok(response);
 	}
 }
