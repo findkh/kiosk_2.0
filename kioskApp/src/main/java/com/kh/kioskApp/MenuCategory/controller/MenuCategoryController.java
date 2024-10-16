@@ -39,9 +39,8 @@ public class MenuCategoryController {
 			List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
 			response.put("categories", categories);
 			return ResponseEntity.ok(response);
-		} catch (Exception e) {
-			response.put("message", "Error retrieving categories");
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		} catch (MenuCategoryTaskException e) {
+			return handleException(e.getMsg(), e.getCode());
 		}
 	}
 	
@@ -55,8 +54,7 @@ public class MenuCategoryController {
 			response.put("categories", categories);
 			return ResponseEntity.status(HttpStatus.CREATED).body(response);
 		} catch (MenuCategoryTaskException e) {
-			response.put("message", e.getMsg());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			return handleException(e.getMsg(), e.getCode());
 		}
 	}
 	
@@ -74,8 +72,11 @@ public class MenuCategoryController {
 			
 			return ResponseEntity.ok(response);
 		} catch (MenuCategoryTaskException e) {
-			response.put("message", e.getMsg());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			return handleException(e.getMsg(), e.getCode());
 		}
+	}
+	
+	private ResponseEntity<Map<String, Object>> handleException(String msg, int status){
+		return ResponseEntity.status(status).body(Map.of("error", msg));
 	}
 }

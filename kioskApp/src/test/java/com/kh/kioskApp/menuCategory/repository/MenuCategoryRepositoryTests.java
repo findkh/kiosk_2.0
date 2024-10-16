@@ -6,15 +6,15 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.kh.kioskApp.MenuCategory.entity.MenuCategoryEntity;
 import com.kh.kioskApp.MenuCategory.exception.MenuCategoryExceptions;
 import com.kh.kioskApp.MenuCategory.exception.MenuCategoryTaskException;
 import com.kh.kioskApp.MenuCategory.repository.MenuCategoryRepository;
 
-//@DataJpaTest
-@SpringBootTest
+@DataJpaTest
+//@SpringBootTest
 public class MenuCategoryRepositoryTests {
 	@Autowired
 	private MenuCategoryRepository menuCategoryRepository;
