@@ -52,7 +52,7 @@ public class MenuCategoryController {
 	@Operation(summary = "메뉴 카테고리 수정", description = "메뉴 카테고리를 수정합니다.")
 	@PutMapping("/update")
 	public ResponseEntity<Map<String, Object>> update(@RequestBody UpdateMenuCategoryDTO menuCategoryDTO) {
-		menuCategoryService.updateCategoryName(menuCategoryDTO.getCurrentCategoryName(), menuCategoryDTO.getCategoryName());
+		menuCategoryService.updateCategoryName(menuCategoryDTO.getNo(), menuCategoryDTO.getCategoryName());
 		List<MenuCategoryEntity> categories = menuCategoryService.getAllCategories();
 		Map<String, Object> response = new HashMap<>();
 		response.put("categories", categories);
