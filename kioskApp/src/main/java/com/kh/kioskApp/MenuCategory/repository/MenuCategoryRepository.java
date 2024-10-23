@@ -9,5 +9,5 @@ import com.kh.kioskApp.MenuCategory.entity.MenuCategoryEntity;
 public interface MenuCategoryRepository extends JpaRepository<MenuCategoryEntity, Long>{
 	Optional<MenuCategoryEntity> findByCategoryName(String categoryName);
 
-	Optional<MenuCategoryEntity> findByCategoryNo(Long currentNo);
+	Optional<MenuCategoryEntity> findByNo(Long currentNo);
 }

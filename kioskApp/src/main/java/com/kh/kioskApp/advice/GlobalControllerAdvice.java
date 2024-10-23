@@ -30,7 +30,11 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(UserTaskException.class)
 	public ResponseEntity<Map<String, String>> handleUserTaskException(UserTaskException ex) {
 		log.error(ex.getMsg());
-		return handleException(ex.getMsg(), ex.getCode());
+		String msg = ex.getMsg();
+		if(ex.getCode() == 401) {
+			msg = "아이디 또는 비밀번호가 올바르지 않습니다.";
+		}
+		return handleException(msg, ex.getCode());
 	}
 	
 	@ExceptionHandler(MenuCategoryTaskException.class)

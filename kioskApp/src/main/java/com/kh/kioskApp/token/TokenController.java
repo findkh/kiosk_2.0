@@ -3,11 +3,12 @@ package com.kh.kioskApp.token;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.kioskApp.user.dto.UserDTO;
@@ -25,6 +26,7 @@ import lombok.extern.log4j.Log4j2;
 @RestController
 @RequestMapping("/api/v1/token")
 @Tag(name = "Token", description = "토큰 관리 API")
+@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
 @Log4j2
 @RequiredArgsConstructor
 public class TokenController {

@@ -37,7 +37,7 @@ public class MenuCategoryService {
 
 	@Transactional
 	public void updateCategoryName(Long currentNo, String newName) {
-		Optional<MenuCategoryEntity> optionalEntity = menuCategoryRepository.findByCategoryNo(currentNo);
+		Optional<MenuCategoryEntity> optionalEntity = menuCategoryRepository.findByNo(currentNo);
 
 		// 카테고리가 존재하는지 확인
 		if (!optionalEntity.isPresent()) {
